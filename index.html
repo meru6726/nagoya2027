@@ -48,7 +48,6 @@
       margin: 0 auto;
       padding: 1.5rem 1rem 4rem;
     }
-    /* 重要提醒橫幅 */
     .alert-box {
       background: #fffbeb;
       border-left: 4px solid var(--accent);
@@ -59,7 +58,6 @@
     }
     .alert-box h3 { color: #b45309; font-size: 1rem; margin-bottom: 0.4rem; }
     .alert-box ul { padding-left: 1.2rem; font-size: 0.9rem; color: #78350f; }
-    /* 分頁按鈕 */
     .tabs {
       display: flex;
       gap: 0.5rem;
@@ -87,7 +85,6 @@
     }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    /* 每日卡片 */
     .day-card {
       background: var(--card);
       border-radius: 12px;
@@ -103,6 +100,8 @@
       margin-bottom: 0.75rem;
       padding-bottom: 0.5rem;
       border-bottom: 1px dashed var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     .day-title { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
     .day-tag {
@@ -115,6 +114,24 @@
     }
     .day-tag.mountain { background: #dcfce7; color: #15803d; }
     .day-tag.ghibli { background: #fce7f3; color: #be185d; }
+    .hotel-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #334155;
+      margin-bottom: 0.75rem;
+    }
+    .hotel-bar a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hotel-bar a:hover { text-decoration: underline; }
     .timeline { list-style: none; }
     .timeline li {
       position: relative;
@@ -137,7 +154,6 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-    /* 檢核清單與預算表 */
     .checklist-item {
       display: flex;
       align-items: center;
@@ -171,9 +187,9 @@
   <h1>🏔️ 2027 名古屋・阿爾卑斯山脈之旅</h1>
   <p>2027/04/22 (四) － 04/29 (四) ｜ 8天7夜・四人同行</p>
   <div class="badge-group">
+    <span class="badge">🍃 吉卜力公園</span>
     <span class="badge">❄️ 黑部立山雪壁</span>
     <span class="badge">🌲 上高地新綠</span>
-    <span class="badge">🍃 吉卜力公園</span>
     <span class="badge">🛍️ 名古屋市區</span>
   </div>
 </header>
@@ -181,15 +197,16 @@
 <div class="container">
 
   <div class="alert-box">
-    <h3>⏰ 關鍵搶票與行前節點提醒</h3>
+    <h3>⏰ 關鍵搶票與行李接力提醒</h3>
     <ul>
-      <li><strong>2027/02/10 (台灣時間 13:00)：</strong>搶購 4 月份「吉卜力公園大散步券（高級版）」</li>
-      <li><strong>行李策略：</strong>Day 4 出發參加 3 日山岳團前，使用<strong>黑貓宅急便</strong>將大行李直接寄往 Day 6 晚上的名古屋飯店，僅背隨身包上山。</li>
+      <li><strong>2027/02/10 (台灣時間 13:00)：</strong>搶購 <strong>4/24 (六)</strong>「吉卜力公園大散步券（高級版）」</li>
+      <li><strong>行李流向：</strong>4/23 前往藤之丘輕裝過夜；4/24 從藤之丘退房時，可將大行李直接寄到 4/27 要入住的 **Dormy Inn** 或寄放在 4/24 當晚入住的站前 APA，讓 4/25–27 跟團無負擔！</li>
     </ul>
   </div>
 
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('itinerary', this)">📅 每日行程總覽</button>
+    <button class="tab-btn" onclick="switchTab('hotels', this)">🏨 住宿一覽表</button>
     <button class="tab-btn" onclick="switchTab('checklist', this)">✅ 四人行前準備</button>
     <button class="tab-btn" onclick="switchTab('budget', this)">💴 預估花費參考</button>
   </div>
@@ -198,38 +215,44 @@
   <div id="itinerary" class="tab-content active">
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 1｜04/22 (四) 抵達名古屋</span>
-        <span class="day-tag">市區暖身</span>
+        <span class="day-title">Day 1｜04/22 (四) 晚班機抵達名古屋</span>
+        <span class="day-tag">抵達入住</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：APA Hotel〈名古屋站前〉（附設大浴場）</div>
       <ul class="timeline">
-        <li>桃園機場 (TPE) $\rightarrow$ 中部國際機場 (NGO)</li>
-        <li>搭乘名鐵 μ-SKY 前往名古屋市區飯店 Check-in</li>
-        <li>晚餐：名古屋車站周邊（矢場味噌豬排 / 世界的山將）</li>
+        <li>桃園機場 (TPE) → 中部國際機場 (NGO)（晚間抵達）</li>
+        <li>搭乘名鐵直奔名古屋車站，步行至站前 APA 辦理入住</li>
+        <li>梳洗：前往大浴場泡澡消除飛行疲勞</li>
       </ul>
     </div>
 
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 2｜04/23 (五) 名古屋經典與市區漫遊</span>
-        <span class="day-tag">市區觀光</span>
+        <span class="day-title">Day 2｜04/23 (五) 移動至藤之丘 & 自由逛街</span>
+        <span class="day-tag">市區漫遊</span>
+      </div>
+      <div class="hotel-bar">
+        🏨 住宿：<a href="https://maps.app.goo.gl/JAsT4Ev3vxNj9X7q8" target="_blank">露櫻GRAND酒店 名古屋藤丘站前 📍</a>
       </div>
       <ul class="timeline">
-        <li>上午：名古屋城（本丸御殿）或熱田神宮參拜</li>
-        <li>下午：榮商圈（綠洲21、中部電力 MIRAI TOWER）咖啡廳放空</li>
-        <li>晚餐：蓬萊軒鰻魚飯三吃（建議提早抽號碼牌）</li>
+        <li>上午：悠閒退房，搭乘地鐵東山線至終點站「藤之丘」寄放行李</li>
+        <li>下午：沿東山線自由逛街（如星之丘 Terrace 或返回榮商圈）</li>
+        <li>晚上：入住藤之丘站前飯店，準備迎接隔天的吉卜力之旅</li>
       </ul>
     </div>
 
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 3｜04/24 (六) 犬山城半日遊 & 山岳行前整備</span>
-        <span class="day-tag">近郊小旅行</span>
+        <span class="day-title">Day 3｜04/24 (六) 吉卜力公園一日圓夢 → 回站前 APA</span>
+        <span class="day-tag ghibli">吉卜力公園</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：APA Hotel〈名古屋站前〉（附設大浴場）</div>
       <ul class="timeline">
-        <li>上午：搭乘名鐵前往國寶「犬山城」與城下町老街散步</li>
-        <li>下午：返回名古屋市區，採買高山保暖小物與行動糧</li>
-        <li>傍晚：<strong>飯店櫃檯寄出大件行李（黑貓宅急便）</strong>，整理 3 天 2 夜輕便背包</li>
+        <li>早上：退房寄放行李，搭乘 Linimo 磁浮列車直達「愛・地球博紀念公園」</li>
+        <li>全日攻略 <strong>吉卜力公園</strong>（吉卜力大倉庫、魔女之谷、魔法故鄉等）</li>
+        <li>傍晚：搭車返回名古屋車站，入住 <strong>APA Hotel〈名古屋站前〉</strong></li>
       </ul>
+      <div class="note">🎟️ 票券注意：4/24 為週六假日，務必於 2/10 準時搶購大散步券高級版。</div>
     </div>
 
     <div class="day-card">
@@ -237,11 +260,12 @@
         <span class="day-title">Day 4｜04/25 (日) KKday 山岳團 Day 1</span>
         <span class="day-tag mountain">山岳深度遊</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：山區溫泉飯店（KKday 團體安排）</div>
       <ul class="timeline">
-        <li>名古屋集合出發 $\rightarrow$ 前往飛驒高山 / 白川鄉合掌村區域</li>
-        <li>入住溫泉飯店，享受山區寧靜夜晚</li>
+        <li>早上：從站前 APA 步行至集合點出發</li>
+        <li>前往飛驒高山老街 / 白川鄉合掌村區域遊覽</li>
+        <li>晚上入住山區溫泉飯店</li>
       </ul>
-      <div class="note">📌 行程主軸：KKday 黑部立山、上高地 3 日遊（含交通、住宿與部分餐食）。</div>
     </div>
 
     <div class="day-card">
@@ -249,51 +273,105 @@
         <span class="day-title">Day 5｜04/26 (一) KKday 山岳團 Day 2：黑部立山</span>
         <span class="day-tag mountain">開山雪壁</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：阿爾卑斯路線周邊飯店（KKday 團體安排）</div>
       <ul class="timeline">
         <li>搭乘六種高山交通工具橫越立山黑部阿爾卑斯路線</li>
         <li>室堂平「雪之大谷」漫步、黑部水庫壯麗景觀</li>
       </ul>
-      <div class="note">🧥 裝備提醒：4 月下旬室堂氣溫約 0°C～5°C，務必攜帶防風羽絨外套、毛帽與太陽眼鏡（防雪盲）。</div>
+      <div class="note">🧥 裝備提醒：4 月下旬室堂氣溫偏低，務必攜帶防風保暖外套與墨鏡。</div>
     </div>
 
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 6｜04/27 (二) KKday 山岳團 Day 3：上高地</span>
+        <span class="day-title">Day 6｜04/27 (二) KKday 山岳團 Day 3：上高地 → 入住 Dormy Inn</span>
         <span class="day-tag mountain">神之故鄉</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：Dormy Inn 名古屋（溫泉大浴場＋免費宵夜拉麵）</div>
       <ul class="timeline">
-        <li>大正池 $\rightarrow$ 田代池 $\rightarrow$ 河童橋健行，欣賞穗高連峰殘雪與梓川新綠</li>
-        <li>傍晚搭乘專車返回名古屋市區，飯店領回宅急便大行李</li>
+        <li>大正池 → 田代池 → 河童橋健行，欣賞穗高連峰與梓川新綠</li>
+        <li>傍晚搭專車返回名古屋市區，轉往 <strong>Dormy Inn 名古屋</strong> 辦理入住</li>
+        <li>晚上大快朵頤，泡湯配免費醬油拉麵！</li>
       </ul>
     </div>
 
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 7｜04/28 (三) 吉卜力公園一日圓夢</span>
-        <span class="day-tag ghibli">吉卜力公園</span>
+        <span class="day-title">Day 7｜04/28 (三) 名古屋市區放空與深度逛街</span>
+        <span class="day-tag">購物美食</span>
       </div>
+      <div class="hotel-bar">🏨 住宿：Dormy Inn 名古屋</div>
       <ul class="timeline">
-        <li>搭乘地下鐵東山線至「藤が丘」轉乘 Linimo 磁浮列車至愛・地球博紀念公園</li>
-        <li>重點攻略：吉卜力大倉庫（預約時段入場）、魔女之谷、魔法故鄉</li>
-        <li>晚餐：名古屋車站周邊居酒屋慶功</li>
+        <li>睡到自然醒，享受悠閒早晨</li>
+        <li>白天：大須商店街、榮商圈百貨或車站周邊盡情採買</li>
+        <li>晚餐：名古屋特色美食慶功宴（蓬萊軒鰻魚飯三吃 / 矢場味噌豬排）</li>
       </ul>
-      <div class="note">🎟️ 票券鎖定：大散步券高級版（O-Sanpo Day Pass Premium），可進入所有指定建築內部參觀。</div>
     </div>
 
     <div class="day-card">
       <div class="day-header">
-        <span class="day-title">Day 8｜04/29 (四) 最後採買與賦歸</span>
+        <span class="day-title">Day 8｜04/29 (四) 最後補貨與賦歸</span>
         <span class="day-tag">購物返台</span>
       </div>
       <ul class="timeline">
-        <li>上午：大須商店街或名古屋車站高島屋 / 藥妝店最後補貨</li>
-        <li>下午：前往中部國際機場（可順道逛 Flight of Dreams 波音787展示館）</li>
+        <li>上午：整理戰利品，藥妝店與伴手禮最後補貨</li>
+        <li>下午：搭乘名鐵前往中部國際機場（可逛 Flight of Dreams）</li>
         <li>搭機返回台灣，結束美好旅程</li>
       </ul>
     </div>
   </div>
 
-  <!-- 分頁 2：行前準備清單 -->
+  <!-- 分頁 2：住宿一覽表 -->
+  <div id="hotels" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-title">🏨 全程 7 晚住宿規劃總表</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>晚數</th>
+            <th>飯店名稱</th>
+            <th>規劃亮點</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>04/22 (四)</td>
+            <td>1 晚</td>
+            <td><strong>APA Hotel〈名古屋站前〉</strong></td>
+            <td>晚班機抵達，近車站且附設大浴場</td>
+          </tr>
+          <tr>
+            <td>04/23 (五)</td>
+            <td>1 晚</td>
+            <td><a href="https://maps.app.goo.gl/JAsT4Ev3vxNj9X7q8" target="_blank"><strong>露櫻GRAND酒店 名古屋藤丘站前</strong></a></td>
+            <td>位於 Linimo 轉乘站旁，隔天直衝吉卜力公園最省時</td>
+          </tr>
+          <tr>
+            <td>04/24 (六)</td>
+            <td>1 晚</td>
+            <td><strong>APA Hotel〈名古屋站前〉</strong></td>
+            <td>吉卜力玩完回市區，方便隔天跟 KKday 集合</td>
+          </tr>
+          <tr>
+            <td>04/25 – 04/26</td>
+            <td>2 晚</td>
+            <td><strong>KKday 山岳團指定飯店</strong></td>
+            <td>山區溫泉與阿爾卑斯路線周邊住宿</td>
+          </tr>
+          <tr>
+            <td>04/27 – 04/28</td>
+            <td>2 晚</td>
+            <td><strong>Dormy Inn 名古屋</strong></td>
+            <td>下山後好好放鬆，享受溫泉大浴場與免費宵夜拉麵</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 分頁 3：行前準備清單 -->
   <div id="checklist" class="tab-content">
     <div class="day-card">
       <div class="day-header">
@@ -301,14 +379,15 @@
       </div>
       <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1">四人來回機票（名古屋中部國際機場 NGO）</label></div>
       <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2">KKday 黑部立山・上高地 3 日遊（4/25 - 4/27）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3">名古屋市區住宿（Day 1–3 共 3 晚）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4">名古屋市區住宿（Day 6–7 共 2 晚，確認可代收宅急便行李）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5">2027/02/10 搶購 4/28 吉卜力公園「大散步券高級版」</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6">日本網卡 / eSIM 與 Visit Japan Web 填寫</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3">4/22、4/24 APA Hotel〈名古屋站前〉（共 2 晚）</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4">4/23 露櫻GRAND酒店 名古屋藤丘站前（1 晚）</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5">4/27–28 Dormy Inn 名古屋（共 2 晚）</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6">2027/02/10 搶購 4/24 (六) 吉卜力公園「大散步券高級版」</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7">日本網卡 / eSIM 與 Visit Japan Web 填寫</label></div>
     </div>
   </div>
 
-  <!-- 分頁 3：預估花費 -->
+  <!-- 分頁 4：預估花費 -->
   <div id="budget" class="tab-content">
     <div class="day-card">
       <div class="day-header">
@@ -335,18 +414,13 @@
           </tr>
           <tr>
             <td><strong>市區 5 晚住宿</strong></td>
-            <td>約 NT$ 10,000 – 15,000</td>
-            <td>雙人房分攤（每晚約 NT$ 4,000–6,000/房）</td>
+            <td>約 NT$ 11,000 – 16,000</td>
+            <td>包含 APA 2晚、藤之丘 1晚、Dormy Inn 2晚分攤</td>
           </tr>
           <tr>
             <td><strong>吉卜力公園門票</strong></td>
-            <td>約 NT$ 1,650</td>
-            <td>大散步券高級版（平日 ¥7,300）</td>
-          </tr>
-          <tr>
-            <td><strong>黑貓宅急便寄行李</strong></td>
-            <td>約 NT$ 500 – 650</td>
-            <td>28 吋行李箱寄送（約 ¥2,300–2,800/件）</td>
+            <td>約 NT$ 1,750</td>
+            <td>大散步券高級版（假日 ¥7,800）</td>
           </tr>
         </tbody>
       </table>
@@ -363,7 +437,6 @@
     btn.classList.add('active');
   }
 
-  // 自動儲存打勾狀態在瀏覽器中
   document.querySelectorAll('input[type="checkbox"]').forEach(box => {
     const saved = localStorage.getItem(box.id);
     if (saved === 'true') box.checked = true;
