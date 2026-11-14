@@ -1,450 +1,939 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2027 名古屋・立山黑部・上高地 8日之旅</title>
+  <title>2027 名古屋・信州賞櫻・立山黑部・上高地 8日完整手冊</title>
   <style>
     :root {
-      --primary: #2b5876;
-      --secondary: #4e4376;
-      --accent: #d97706;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
+      --bg: #fdfbf9;
+      --surface: #ffffff;
+      --surface-soft: #f7f3ef;
+      --primary: #2b4c65;
+      --primary-light: #e8f0f6;
+      --accent: #d96b84;
+      --accent-light: #fdf0f3;
+      --green: #15803d;
+      --green-light: #dcfce7;
+      --gold: #b8860b;
+      --gold-light: #fcf8eb;
+      --text: #1f2937;
+      --text-muted: #5b6472;
+      --border: #e5e0d8;
+      --shadow: 0 4px 16px rgba(31, 41, 55, 0.06);
+      --radius: 14px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
+      padding-bottom: 56px;
     }
+
+    /* Header */
     header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, #243b53 0%, #334e68 65%, #486581 100%);
+      color: #ffffff;
+      padding: 36px 20px 32px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
-    header p { opacity: 0.9; font-size: 0.95rem; }
-    .badge-group {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), #f3a6b8, #8fb8de);
     }
-    .badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.25rem 0.75rem;
+
+    .badge-top {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 14px;
       border-radius: 999px;
       font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
     }
-    .container {
-      max-width: 900px;
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      font-size: 0.98rem;
+      color: #d9e2ec;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 4rem;
     }
-    .alert-box {
-      background: #fffbeb;
-      border-left: 4px solid var(--accent);
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    }
-    .alert-box h3 { color: #b45309; font-size: 1rem; margin-bottom: 0.4rem; }
-    .alert-box ul { padding-left: 1.2rem; font-size: 0.9rem; color: #78350f; }
-    .tabs {
+
+    .badge-group {
+      margin-top: 14px;
       display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .tab-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 0.6rem 1.1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--muted);
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-    .tab-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .day-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .day-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px dashed var(--border);
+      justify-content: center;
+      gap: 8px;
       flex-wrap: wrap;
-      gap: 0.5rem;
     }
-    .day-title { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
-    .day-tag {
-      font-size: 0.8rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      background: #e0f2fe;
-      color: #0369a1;
+
+    .badge-pill {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 0.86rem;
       font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      transition: all 0.2s ease;
     }
-    .day-tag.mountain { background: #dcfce7; color: #15803d; }
-    .day-tag.ghibli { background: #fce7f3; color: #be185d; }
-    .hotel-bar {
+
+    nav a:hover, nav a.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 920px;
+      margin: 24px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Overview Cards */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .overview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .overview-card .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .overview-card .value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .overview-card .sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section */
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 68px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 2px solid var(--surface-soft);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 1.28rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .day-tag {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .day-tag.blue { background: var(--primary); }
+    .day-tag.green { background: var(--green); }
+    .day-tag.gold { background: var(--gold); }
+
+    .hotel-banner {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      background: #f8fafc;
+      gap: 6px;
+      background: var(--surface-soft);
       border: 1px solid var(--border);
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      color: #334155;
-      margin-bottom: 0.75rem;
-    }
-    .hotel-bar a {
-      color: var(--primary);
-      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
       font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 16px;
     }
-    .hotel-bar a:hover { text-decoration: underline; }
-    .timeline { list-style: none; }
-    .timeline li {
+
+    /* Timeline */
+    .timeline {
       position: relative;
-      padding-left: 1.2rem;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
+      padding-left: 24px;
+      border-left: 2px solid #d0d7de;
+      margin-left: 8px;
     }
-    .timeline li::before {
-      content: "•";
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
       position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: bold;
+      left: -31px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px var(--primary);
     }
-    .note {
-      margin-top: 0.75rem;
-      padding: 0.6rem 0.8rem;
-      background: #f1f5f9;
+
+    .timeline-dot.sakura {
+      background: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .timeline-dot.green {
+      background: var(--green);
+      box-shadow: 0 0 0 2px var(--green);
+    }
+
+    .timeline-time {
+      display: inline-block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 2px 10px;
       border-radius: 6px;
-      font-size: 0.85rem;
-      color: var(--muted);
+      margin-bottom: 6px;
     }
-    .checklist-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
+
+    .timeline-time.sakura {
+      color: #a63450;
+      background: var(--accent-light);
     }
-    .checklist-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--primary);
+
+    .timeline-time.green {
+      color: var(--green);
+      background: var(--green-light);
     }
+
+    .timeline-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .timeline-desc {
+      font-size: 0.94rem;
+      color: #374151;
+    }
+
+    .tip-box {
+      margin-top: 10px;
+      background: var(--surface-soft);
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.89rem;
+      color: #334155;
+    }
+
+    .tip-box.sakura {
+      background: var(--accent-light);
+      border-left-color: var(--accent);
+    }
+
+    .tip-box.gold {
+      background: var(--gold-light);
+      border-left-color: var(--gold);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
+
     th, td {
-      padding: 0.75rem;
+      padding: 12px 12px;
       text-align: left;
       border-bottom: 1px solid var(--border);
+      vertical-align: top;
     }
-    th { background: #f1f5f9; color: var(--primary); }
+
+    th {
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* Hotel & Dining Cards */
+    .hotel-card {
+      background: linear-gradient(to right, #f8fafc, #ffffff);
+      border: 1px solid #cbd5e1;
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .hotel-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .pill {
+      font-size: 0.82rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .dining-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .dining-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: var(--surface-soft);
+    }
+
+    .dining-card h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .dining-meta {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .dining-card p {
+      font-size: 0.88rem;
+      color: #374151;
+    }
+
+    /* Checklist */
+    .checklist { list-style: none; }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li:hover { background: var(--surface-soft); }
+
+    .checklist input[type="checkbox"] {
+      margin-top: 4px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checklist li.checked span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 28px;
+      padding: 0 16px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      section { padding: 18px 16px; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🏔️ 2027 名古屋・阿爾卑斯山脈之旅</h1>
-  <p>2027/04/22 (四) － 04/29 (四) ｜ 8天7夜・四人同行</p>
-  <div class="badge-group">
-    <span class="badge">🍃 吉卜力公園</span>
-    <span class="badge">❄️ 黑部立山雪壁</span>
-    <span class="badge">🌲 上高地新綠</span>
-    <span class="badge">🛍️ 名古屋市區</span>
+  <header>
+    <div class="badge-top">2027/04/22 (四) – 04/29 (四) ｜ 8天7夜・四人同行</div>
+    <h1>名古屋・信州賞櫻・立山黑部・上高地 完整手冊</h1>
+    <p>第一段：信州櫻花與白馬雪山環線（4/23–24）➔ 第二段：KKday 立山黑部・上高地 3 日遊（4/25–27）➔ 名古屋市區溫泉放空</p>
+    <div class="badge-group">
+      <span class="badge-pill">🌸 雲上殿＆大町滿開櫻花</span>
+      <span class="badge-pill">🏔️ 白馬三山雪壁</span>
+      <span class="badge-pill">❄️ 黑部立山雪之大谷</span>
+      <span class="badge-pill">🌲 上高地新綠</span>
+      <span class="badge-pill">♨️ APA ＆ Dormy Inn 浴場</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#overview">行程總覽</a>
+    <a href="#day1">4/22 抵達</a>
+    <a href="#day2">4/23 松本・長野</a>
+    <a href="#day3">4/24 白馬・大町</a>
+    <a href="#shinshu-guide">4/23 住宿與晚餐</a>
+    <a href="#kkday">4/25–27 山岳3日團</a>
+    <a href="#nagoya-end">4/27–29 名古屋收尾</a>
+    <a href="#hotels">全程住宿表</a>
+    <a href="#transport">信州交通班次</a>
+    <a href="#checklist">行前清單</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="overview-grid">
+      <div class="overview-card">
+        <div class="label">第一段｜4/23–4/24 信州逆時針環線</div>
+        <div class="value">名古屋 ➔ 松本 ➔ 長野 ➔ 白馬 ➔ 大町</div>
+        <div class="sub">零回頭路！一次收齊雲上殿滿開櫻花、白馬雪壁與中綱湖・大町櫻花</div>
+      </div>
+      <div class="overview-card">
+        <div class="label">第二段｜4/25–4/27 阿爾卑斯山岳團</div>
+        <div class="value">KKday 黑部立山・上高地 3 日遊</div>
+        <div class="sub">名古屋車站集合出發，深入立山雪之大谷與神之故鄉上高地</div>
+      </div>
+      <div class="overview-card">
+        <div class="label">市區住宿配置（前後浴場＋拉麵）</div>
+        <div class="value">前後住 APA ➔ 最後兩晚 Dormy Inn</div>
+        <div class="sub">4/22、4/24 住站前 APA（可寄放行李）；4/27–29 改住 Dormy Inn 名古屋</div>
+      </div>
+    </div>
+
+    <!-- DAY 1: 4/22 -->
+    <section id="day1">
+      <div class="section-header">
+        <h2><span class="day-tag blue">DAY 1｜4/22 (四)</span> 晚班機抵達名古屋 ➔ 入住站前 APA</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">行李策略：大件行李寄放於此</span>
+      </div>
+      <div class="hotel-banner">🏨 4/22 住宿：APA Hotel〈名古屋站前〉（附設大浴場）</div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">晚間抵達中部國際機場 (NGO)</div>
+          <div class="timeline-title">搭乘名鐵直奔名古屋車站 ➔ 步行至站前 APA 辦理入住</div>
+          <div class="timeline-desc">
+            晚間抵達後直接前往站前 APA 放好行李，先到飯店大浴場泡湯洗去搭機疲勞。
+          </div>
+          <div class="tip-box gold">
+            <strong>輕裝出發秘訣：</strong>4/23–4/24 前往信州只需背<strong>輕便過夜背包</strong>！大件行李可直接寄放在站前 APA（確認 4/24 晚上回來續住），免去在松本站找大型置物櫃及 4/24 簗場站無置物櫃的困擾。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 2: 4/23 -->
+    <section id="day2">
+      <div class="section-header">
+        <h2><span class="day-tag">DAY 2｜4/23 (五)</span> 名古屋 ➔ 松本古城 ➔ 長野市賞櫻</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">移動主軸：JR 特急「信濃號」</span>
+      </div>
+      <div class="hotel-banner">🏨 4/23 住宿：Hotel Metropolitan Nagano（長野大都會飯店・JR 長野站 2F 直通）</div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">07:00 或 08:00 出發（車程約 2 小時 5 分）</div>
+          <div class="timeline-title">名古屋站 ➔ 松本站｜搭乘 JR 特急「信濃號（Shinano）」</div>
+          <div class="timeline-desc">
+            建議搭乘 <strong>信濃 1 號（07:00 発 ➔ 09:08 着）</strong> 或 <strong>信濃 3 號（08:00 発 ➔ 10:05 着）</strong>。沿途欣賞木曾谷溪流與遠方雪山景色。
+          </div>
+          <div class="tip-box">
+            <strong>行李寄放攻略：</strong>抵達松本站後，將過夜背包寄放在松本站內的投幣式置物櫃（Coin Locker），空手散步最輕鬆。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">09:20 – 11:30（停留約 1.5 – 2 小時）</div>
+          <div class="timeline-title">國寶松本城天守閣 ＆ 繩手通青蛙老街巡禮</div>
+          <div class="timeline-desc">
+            從松本站步行約 15 分鐘抵達松本城。4/23 此時松本城櫻花多已轉為清爽新綠，黑白木造天守倒映護城河，後方襯托白雪覆蓋的北阿爾卑斯山脈。回程順道逛充滿江戶風情的「繩手通商店街」與「四柱神社」。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">12:05 ➔ 12:55（車程約 50 分鐘）</div>
+          <div class="timeline-title">松本站 ➔ 長野站｜續搭 JR 特急「信濃號」北上</div>
+          <div class="timeline-desc">
+            取回置物櫃背包，搭乘午間班次（如 <strong>信濃 7 號 12:05 発 ➔ 12:55 着</strong>，或 13:06 発 ➔ 13:57 着）前往長野站。抵達後直接走 2F 連通道進 <strong>Hotel Metropolitan Nagano</strong> 寄放行李。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">13:15 – 14:30</div>
+          <div class="timeline-title">午餐｜善光寺表參道品嚐信州名物</div>
+          <div class="timeline-desc">
+            從長野站善光寺口搭乘路線巴士（約 10 分鐘）或散步沿表參道前往善光寺，午餐享用現桿手打「信州蕎麥麵」與熱騰騰的信州傳統「烤菜包（Oyaki）」。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot sakura"></div>
+          <div class="timeline-time sakura">14:30 – 17:00｜本日賞櫻重頭戲</div>
+          <div class="timeline-title">參拜善光寺 ➔ 搭計程車上「雲上殿」賞 650 株滿開櫻花海</div>
+          <div class="timeline-desc">
+            參拜擁有 1,400 年歷史的善光寺本堂後，從善光寺後方（大勸進／停車場一帶）搭乘計程車約 10 分鐘上山抵達地附山半山腰的「雲上殿」。4/20 前後正是雲上殿 650 株染井吉野櫻與八重櫻盛開高峰，可居高臨下俯瞰長野盆地與粉紅櫻花海。
+          </div>
+          <div class="tip-box sakura">
+            <strong>下山叫車提醒：</strong>雲上殿位於山腰較不易隨手攔到空車，建議上山時請計程車司機留名片／預約約 45–60 分鐘後回程接駁，或請現場服務處協助叫車返回長野站。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHINSHU HOTEL & DINNER -->
+    <section id="shinshu-guide">
+      <div class="section-header">
+        <h2><span class="day-tag blue">4/23 住宿＆晚餐</span> 長野大都會飯店 ＆ MIDORI 長野必吃推薦</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">JR 長野站 2F 室內直通・免吹風淋雨</span>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-title">長野大都會飯店（Hotel Metropolitan Nagano）</div>
+        <div style="font-size:0.9rem; color:var(--text-muted);">地址：長野市南石堂町 1346（與 JR 長野站大樓共構）</div>
+        <div class="pill-list">
+          <span class="pill">JR 剪票口步行 2 分鐘直達</span>
+          <span class="pill">無縫連接 MIDORI 商場</span>
+          <span class="pill">隔日走室內通道 3 分鐘達東口巴士站</span>
+          <span class="pill">高樓層可望山景</span>
+        </div>
+        <p style="font-size:0.93rem; color:#334155; margin-top:6px;">
+          4/23 晚上逛完車站共構商場 <strong>MIDORI 長野</strong> 用餐與採買伴手禮後，搭電梯就能直接回房休息。4/24 一早退房後，穿過 JR 長野站 2 樓東西自由通道下樓，即是前往白馬的「長野站東口 26 號巴士乘車處」。
+        </p>
+      </div>
+
+      <div class="dining-grid">
+        <div class="dining-card">
+          <h4>1. 信州蕎麦の草笛（MIDORI 店）</h4>
+          <div class="dining-meta">MIDORI 3F｜17:00–22:00｜信州蕎麥麵名店</div>
+          <p>長野人氣極高的手打蕎麥麵老店，招牌必點香氣濃郁的<strong>「核桃醬冷蕎麥麵（くるみ蕎麦）」</strong>與酥脆天婦羅拼盤。</p>
+        </div>
+
+        <div class="dining-card">
+          <h4>2. グリル・ザ・ブッチャー NAGANO</h4>
+          <div class="dining-meta">MIDORI 3F｜16:00–22:00｜信州牛排與葡萄酒</div>
+          <p>主打肉質軟嫩多汁的<strong>「信州和牛排」</strong>與長野產豬肉料理，提供多款長野在地釀造葡萄酒。</p>
+        </div>
+
+        <div class="dining-card">
+          <h4>3. 明治亭 長野駅店</h4>
+          <div class="dining-meta">MIDORI 3F｜11:00–21:30｜信州醬汁豬排丼</div>
+          <p>信州駒ヶ根名物<strong>「醬汁豬排丼（ソースかつ丼）」</strong>專門店，可點豬排＋信州蕎麥麵雙拼套餐。</p>
+        </div>
+
+        <div class="dining-card">
+          <h4>4. 飯後甜點與地酒小酌（MIDORI 2F）</h4>
+          <div class="dining-meta">MIDORI 2F 信州おみやげ参道 ORAHO｜至 20:00</div>
+          <p>順道採買<strong>「八幡屋礒五郎」七味粉</strong>、信州蘋果派；喜歡清酒可到「醗酵バー 醸」體驗長野地酒三杯組。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 3: 4/24 -->
+    <section id="day3">
+      <div class="section-header">
+        <h2><span class="day-tag">DAY 3｜4/24 (六)</span> 長野 ➔ 白馬大出公園 ➔ 中綱湖 ➔ 大町公園 ➔ 名古屋</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">Alpico 高速巴士 ＋ JR 大糸線</span>
+      </div>
+      <div class="hotel-banner">🏨 4/24 住宿：APA Hotel〈名古屋站前〉（領回大行李・準備隔天跟團）</div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">08:20 ➔ 09:35（車程約 1 小時 15 分）</div>
+          <div class="timeline-title">長野站東口 26 號乘車處 ➔ 白馬站｜Alpico 特急巴士</div>
+          <div class="timeline-desc">
+            退房後穿過 JR 長野站 2F 自由通道下樓至<strong>「東口 26 號乘車處」</strong>，搭乘 Alpico 季節限定特急巴士（長野—白馬線）直達 JR 白馬站。免預約現場排隊上車（可刷交通 IC 卡），建議 08:05 前抵達站牌排隊。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot sakura"></div>
+          <div class="timeline-time sakura">09:45 – 12:15（從白馬站步行約 15 分鐘）</div>
+          <div class="timeline-title">白馬「大出公園」｜拍攝白馬三山雪壁、木造吊橋與初綻櫻花</div>
+          <div class="timeline-desc">
+            沿著清澈的姬川散步至大出公園：前景是古樸茅草屋與木造吊橋、中景是剛染上粉色的染井吉野櫻與垂枝櫻、背景則是壯麗的北阿爾卑斯白馬三山雪壁。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot sakura"></div>
+          <div class="timeline-time sakura">12:46 ➔ 13:00 抵達「簗場站」（步行約 5–8 分鐘）</div>
+          <div class="timeline-title">白馬站 ➔ 簗場站｜探訪「中綱湖」湖畔大山櫻</div>
+          <div class="timeline-desc">
+            搭乘 JR 大糸線往南 2 站至無人小站「簗場站（Yanaba）」，步行約 5–8 分鐘即達中綱湖，欣賞湖畔著名的「大山櫻」粉紅花朵與湖面倒影。
+          </div>
+          <div class="tip-box gold">
+            <strong>大糸線班次提醒：</strong>JR 大糸線平均每 1.5–2 小時才有一班車，且「簗場站」無投幣式置物櫃，輕裝背過夜包移動最方便，出發前務必確認好下一班往信濃大町的時刻。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot sakura"></div>
+          <div class="timeline-time sakura">約 14:30 – 16:15（信濃大町站搭計程車約 5 分鐘）</div>
+          <div class="timeline-title">信濃大町站 ➔ 「大町公園」滿開櫻花與北阿爾卑斯山景</div>
+          <div class="timeline-desc">
+            續搭 JR 大糸線往南抵達「信濃大町站」，出站後建議搭乘計程車（約 5 分鐘，省去 20 分鐘上坡步行）前往「大町公園」，將盛開櫻花與立山連峰、爺岳雪山收進鏡頭。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">傍晚 16:40 左右出發 ➔ 約 19:57 或 20:59 返抵名古屋</div>
+          <div class="timeline-title">信濃大町站 ➔ 松本站（JR 大糸線）➔ 名古屋站（特急信濃號）</div>
+          <div class="timeline-desc">
+            從信濃大町站搭 JR 大糸線南下返回松本站（約 55–60 分鐘），轉乘傍晚 <strong>JR 特急「信濃號」</strong>（<strong>信濃 22 號 17:52 発 ➔ 19:57 着</strong> 或 <strong>信濃 24 號 18:52 発 ➔ 20:59 着</strong>）返回名古屋，入住站前 APA 泡湯並整理隔天跟團行李！
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 4-6: 4/25-4/27 KKDAY -->
+    <section id="kkday">
+      <div class="section-header">
+        <h2><span class="day-tag green">DAY 4–6｜4/25 (日) – 4/27 (二)</span> KKday 黑部立山・上高地 3 日遊</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">費用每人約 NT$ 18,964｜含交通、山區住宿與部分餐食</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot green"></div>
+          <div class="timeline-time green">Day 4｜04/25 (日) 山岳團 Day 1：名古屋集合出發</div>
+          <div class="timeline-title">飛驒高山老街 / 白川鄉合掌村區域 ➔ 入住山區溫泉飯店</div>
+          <div class="timeline-desc">
+            早上從站前 APA 步行至名古屋車站集合點出發（大行李可隨專車移動或寄放市區），前往飛驒高山與合掌村區域遊覽，晚上入住山區溫泉飯店。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot green"></div>
+          <div class="timeline-time green">Day 5｜04/26 (一) 山岳團 Day 2：黑部立山開山雪壁</div>
+          <div class="timeline-title">室堂平「雪之大谷」漫步 ＆ 黑部水庫壯麗景觀</div>
+          <div class="timeline-desc">
+            搭乘六種高山交通工具橫越立山黑部阿爾卑斯路線，近距離感受開山季節數十公尺高的震撼雪壁。
+          </div>
+          <div class="tip-box">
+            <strong>裝備提醒：</strong>4 月下旬室堂氣溫約 0°C～5°C，務必攜帶防風羽絨外套、毛帽與太陽眼鏡（防雪盲）。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot green"></div>
+          <div class="timeline-time green">Day 6｜04/27 (二) 山岳團 Day 3：上高地 ➔ 返回名古屋入住 Dormy Inn</div>
+          <div class="timeline-title">大正池 ➔ 田代池 ➔ 河童橋健行 ➔ 傍晚返回名古屋市區</div>
+          <div class="timeline-desc">
+            欣賞穗高連峰殘雪與梓川清澈新綠。傍晚搭乘專車返回名古屋市區解散後，前往 <strong>Dormy Inn 名古屋</strong> 辦理入住（連住兩晚），晚上享受溫泉大浴場與免費宵夜醬油拉麵！
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 7-8: 4/28-4/29 -->
+    <section id="nagoya-end">
+      <div class="section-header">
+        <h2><span class="day-tag gold">DAY 7–8｜4/28 (三) – 4/29 (四)</span> 名古屋市區放空、吉卜力公園與購物返台</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">連住 Dormy Inn 名古屋（至 4/29 退房）</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Day 7｜04/28 (三) 吉卜力公園 或 名古屋市區深度逛街</div>
+          <div class="timeline-title">愛・地球博紀念公園（吉卜力公園）／大須商店街・榮商圈採買</div>
+          <div class="timeline-desc">
+            <strong>選項 A（吉卜力圓夢日）：</strong>搭乘地鐵東山線至「藤が丘」轉乘 Linimo 磁浮列車前往吉卜力公園（記得於 <strong>2027/02/10</strong> 搶購 4/28「大散步券高級版」）。<br>
+            <strong>選項 B（市區悠閒放空）：</strong>睡到自然醒享用 Dormy Inn 豐盛早餐，白天逛大須商店街、榮商圈百貨或名古屋車站高島屋，晚餐品嚐蓬萊軒鰻魚飯三吃或矢場味噌豬排。
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Day 8｜04/29 (四) 最後補貨與賦歸</div>
+          <div class="timeline-title">Dormy Inn 退房 ➔ 伴手禮最後採買 ➔ 中部國際機場返台</div>
+          <div class="timeline-desc">
+            上午整理戰利品、藥妝店與蝦餅伴手禮最後補貨；下午搭乘名鐵前往中部國際機場（可順道逛 Flight of Dreams 波音 787 展示館），搭機返回台灣。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL HOTELS SUMMARY -->
+    <section id="hotels">
+      <div class="section-header">
+        <h2><span class="day-tag blue">全程住宿總表</span> 2027/04/22 – 04/29（共 7 晚）</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">浴場配置與行李動線最佳化</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>晚數</th>
+              <th>住宿飯店</th>
+              <th>地點與規劃亮點</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>04/22 (四)</strong></td>
+              <td>1 晚</td>
+              <td><strong>APA Hotel〈名古屋站前〉</strong></td>
+              <td>晚班機抵達首晚，附設大浴場；<strong>大件行李可寄放此處</strong>，隔天輕裝去信州。</td>
+            </tr>
+            <tr>
+              <td><strong>04/23 (五)</strong></td>
+              <td>1 晚</td>
+              <td><strong>Hotel Metropolitan Nagano</strong><br>（長野大都會飯店）</td>
+              <td>JR 長野站 2F 室內直通，樓下即 MIDORI 美食商場，隔日走通道 3 分鐘達東口巴士站。</td>
+            </tr>
+            <tr>
+              <td><strong>04/24 (六)</strong></td>
+              <td>1 晚</td>
+              <td><strong>APA Hotel〈名古屋站前〉</strong></td>
+              <td>信州兩天一夜結束返回名古屋，領回大行李並泡大浴場休息，隔天一早步行跟 KKday 團集合。</td>
+            </tr>
+            <tr>
+              <td><strong>04/25 – 04/26</strong></td>
+              <td>2 晚</td>
+              <td><strong>KKday 山岳團指定飯店</strong></td>
+              <td>山區溫泉飯店與立山阿爾卑斯路線周邊住宿（團體安排）。</td>
+            </tr>
+            <tr>
+              <td><strong>04/27 – 04/28</strong><br>（04/29 退房）</td>
+              <td>2 晚</td>
+              <td><strong>Dormy Inn 名古屋</strong></td>
+              <td>下山後最後兩晚改住 Dormy Inn！享受天然溫泉大浴場、免費宵夜醬油拉麵與豐盛早餐，為旅程完美收尾。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TRANSPORT SUMMARY -->
+    <section id="transport">
+      <div class="section-header">
+        <h2><span class="day-tag">4/23–4/24 交通總表</span> 信州環線關鍵班次與購票策略</h2>
+        <span style="font-size:0.88rem; color:var(--text-muted);">單買車票比 JR 全日本周遊券更省錢</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日期 / 區間</th>
+              <th>交通工具</th>
+              <th>建議班次與時間</th>
+              <th>購票與搭乘注意事項</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>4/23 上午</strong><br>名古屋 ➔ 松本</td>
+              <td>JR 特急「信濃號」</td>
+              <td>信濃 1 號 (07:00–09:08)<br>信濃 3 號 (08:00–10:05)</td>
+              <td>全車指定席（部分季節全指定），建議提前於 JR 官網（e5489 / えきねっと）或日本車站綠色窗口劃位。</td>
+            </tr>
+            <tr>
+              <td><strong>4/23 中午</strong><br>松本 ➔ 長野</td>
+              <td>JR 特急「信濃號」</td>
+              <td>信濃 7 號 (12:05–12:55)<br>信濃 9 號 (13:06–13:57)</td>
+              <td>車程約 50 分鐘，同為特急信濃號，提前劃位即可輕鬆乘車。</td>
+            </tr>
+            <tr>
+              <td><strong>4/24 早上</strong><br>長野 ➔ 白馬</td>
+              <td>Alpico 特急巴士</td>
+              <td>長野站東口 26 號站牌<br>08:20 発 ➔ 09:35 着</td>
+              <td>免預約現場排隊制（支援 Suica/ICOCA 或現金），建議提前 15 分鐘到東口站牌排隊。</td>
+            </tr>
+            <tr>
+              <td><strong>4/24 午間</strong><br>白馬 ➔ 簗場 ➔ 信濃大町 ➔ 松本</td>
+              <td>JR 大糸線（普通車）</td>
+              <td>白馬 12:46 発 ➔ 簗場 13:00 着<br>（下午班次約每 1.5–2 小時 1 班）</td>
+              <td>地方支線班次較少，出發前 1 週務必用「Yahoo!乗換案内」或「NAVITIME」確認當日確切時刻表；部分無人小站僅收現金或車上抽整理券。</td>
+            </tr>
+            <tr>
+              <td><strong>4/24 傍晚</strong><br>松本 ➔ 名古屋</td>
+              <td>JR 特急「信濃號」</td>
+              <td>信濃 22 號 (17:52–19:57)<br>信濃 24 號 (18:52–20:59)</td>
+              <td>建議預留至少 15–20 分鐘在松本站轉乘，並提前預訂指定席座位安心休息回名古屋。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+      <div class="section-header">
+        <h2><span class="day-tag blue">行前準備</span> 互動式行前確認清單（點擊可勾選）</h2>
+        <span style="font-size:0.85rem; color:var(--text-muted);">進度自動儲存於瀏覽器</span>
+      </div>
+
+      <ul class="checklist" id="todoList">
+        <li>
+          <input type="checkbox" id="c1" />
+          <span><strong>預訂名古屋市區住宿：</strong>4/22（1晚）與 4/24（1晚）訂 <strong>APA Hotel〈名古屋站前〉</strong>；4/27–4/29（2晚）改訂 <strong>Dormy Inn 名古屋</strong>。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c2" />
+          <span><strong>預訂 4/23 長野住宿：</strong>確認 <strong>Hotel Metropolitan Nagano</strong> 訂房資訊，抵達長野站後走 2F 連通道進大廳寄放背包。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c3" />
+          <span><strong>預訂 JR 特急「信濃號」指定席車票：</strong>包含「4/23 名古屋➔松本」、「4/23 松本➔長野」及「4/24 松本➔名古屋」三段車票（乘車日前 1 個月開放線上預訂）。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c4" />
+          <span><strong>預訂 KKday 黑部立山・上高地 3 日遊（4/25–4/27）：</strong>確認四人成行與名古屋車站集合地點。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c5" />
+          <span><strong>2027/02/10 搶購吉卜力公園門票（若 4/28 前往）：</strong>台灣時間 13:00 準時搶購「大散步券高級版」。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c6" />
+          <span><strong>輕便過夜背包打包：</strong>大件行李 4/23 早上寄放於站前 APA，僅背輕便雙肩包前往長野、白馬與中綱湖（4/24 簗場站無置物櫃）。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c7" />
+          <span><strong>出發前一週核對 4/24 JR 大糸線時刻表：</strong>確認白馬站 ➔ 簗場站 ➔ 信濃大町站 ➔ 松本站的下午銜接班次。</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c8" />
+          <span><strong>準備足夠日圓現金、Suica/ICOCA 與防寒裝備：</strong>雲上殿與信濃大町站計程車需現金；白馬與立山室堂雪地需防風羽絨外套與太陽眼鏡。</span>
+        </li>
+      </ul>
+    </section>
+
   </div>
-</header>
 
-<div class="container">
+  <footer>
+    2027 名古屋・信州賞櫻・立山黑部・上高地 8日之旅完整手冊｜支援手機離線查閱與進度儲存
+  </footer>
 
-  <div class="alert-box">
-    <h3>⏰ 關鍵搶票與行李接力提醒</h3>
-    <ul>
-      <li><strong>2027/02/10 (台灣時間 13:00)：</strong>搶購 <strong>4/24 (六)</strong>「吉卜力公園大散步券（高級版）」</li>
-      <li><strong>行李流向：</strong>4/23 前往藤之丘輕裝過夜；4/24 從藤之丘退房時，可將大行李直接寄到 4/27 要入住的 **Dormy Inn** 或寄放在 4/24 當晚入住的站前 APA，讓 4/25–27 跟團無負擔！</li>
-    </ul>
-  </div>
-
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('itinerary', this)">📅 每日行程總覽</button>
-    <button class="tab-btn" onclick="switchTab('hotels', this)">🏨 住宿一覽表</button>
-    <button class="tab-btn" onclick="switchTab('checklist', this)">✅ 四人行前準備</button>
-    <button class="tab-btn" onclick="switchTab('budget', this)">💴 預估花費參考</button>
-  </div>
-
-  <!-- 分頁 1：每日行程 -->
-  <div id="itinerary" class="tab-content active">
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 1｜04/22 (四) 晚班機抵達名古屋</span>
-        <span class="day-tag">抵達入住</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：APA Hotel〈名古屋站前〉（附設大浴場）</div>
-      <ul class="timeline">
-        <li>桃園機場 (TPE) → 中部國際機場 (NGO)（晚間抵達）</li>
-        <li>搭乘名鐵直奔名古屋車站，步行至站前 APA 辦理入住</li>
-        <li>梳洗：前往大浴場泡澡消除飛行疲勞</li>
-      </ul>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 2｜04/23 (五) 移動至藤之丘 & 自由逛街</span>
-        <span class="day-tag">市區漫遊</span>
-      </div>
-      <div class="hotel-bar">
-        🏨 住宿：<a href="https://maps.app.goo.gl/JAsT4Ev3vxNj9X7q8" target="_blank">露櫻GRAND酒店 名古屋藤丘站前 📍</a>
-      </div>
-      <ul class="timeline">
-        <li>上午：悠閒退房，搭乘地鐵東山線至終點站「藤之丘」寄放行李</li>
-        <li>下午：沿東山線自由逛街（如星之丘 Terrace 或返回榮商圈）</li>
-        <li>晚上：入住藤之丘站前飯店，準備迎接隔天的吉卜力之旅</li>
-      </ul>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 3｜04/24 (六) 吉卜力公園一日圓夢 → 回站前 APA</span>
-        <span class="day-tag ghibli">吉卜力公園</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：APA Hotel〈名古屋站前〉（附設大浴場）</div>
-      <ul class="timeline">
-        <li>早上：退房寄放行李，搭乘 Linimo 磁浮列車直達「愛・地球博紀念公園」</li>
-        <li>全日攻略 <strong>吉卜力公園</strong>（吉卜力大倉庫、魔女之谷、魔法故鄉等）</li>
-        <li>傍晚：搭車返回名古屋車站，入住 <strong>APA Hotel〈名古屋站前〉</strong></li>
-      </ul>
-      <div class="note">🎟️ 票券注意：4/24 為週六假日，務必於 2/10 準時搶購大散步券高級版。</div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 4｜04/25 (日) KKday 山岳團 Day 1</span>
-        <span class="day-tag mountain">山岳深度遊</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：山區溫泉飯店（KKday 團體安排）</div>
-      <ul class="timeline">
-        <li>早上：從站前 APA 步行至集合點出發</li>
-        <li>前往飛驒高山老街 / 白川鄉合掌村區域遊覽</li>
-        <li>晚上入住山區溫泉飯店</li>
-      </ul>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 5｜04/26 (一) KKday 山岳團 Day 2：黑部立山</span>
-        <span class="day-tag mountain">開山雪壁</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：阿爾卑斯路線周邊飯店（KKday 團體安排）</div>
-      <ul class="timeline">
-        <li>搭乘六種高山交通工具橫越立山黑部阿爾卑斯路線</li>
-        <li>室堂平「雪之大谷」漫步、黑部水庫壯麗景觀</li>
-      </ul>
-      <div class="note">🧥 裝備提醒：4 月下旬室堂氣溫偏低，務必攜帶防風保暖外套與墨鏡。</div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 6｜04/27 (二) KKday 山岳團 Day 3：上高地 → 入住 Dormy Inn</span>
-        <span class="day-tag mountain">神之故鄉</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：Dormy Inn 名古屋（溫泉大浴場＋免費宵夜拉麵）</div>
-      <ul class="timeline">
-        <li>大正池 → 田代池 → 河童橋健行，欣賞穗高連峰與梓川新綠</li>
-        <li>傍晚搭專車返回名古屋市區，轉往 <strong>Dormy Inn 名古屋</strong> 辦理入住</li>
-        <li>晚上大快朵頤，泡湯配免費醬油拉麵！</li>
-      </ul>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 7｜04/28 (三) 名古屋市區放空與深度逛街</span>
-        <span class="day-tag">購物美食</span>
-      </div>
-      <div class="hotel-bar">🏨 住宿：Dormy Inn 名古屋</div>
-      <ul class="timeline">
-        <li>睡到自然醒，享受悠閒早晨</li>
-        <li>白天：大須商店街、榮商圈百貨或車站周邊盡情採買</li>
-        <li>晚餐：名古屋特色美食慶功宴（蓬萊軒鰻魚飯三吃 / 矢場味噌豬排）</li>
-      </ul>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">Day 8｜04/29 (四) 最後補貨與賦歸</span>
-        <span class="day-tag">購物返台</span>
-      </div>
-      <ul class="timeline">
-        <li>上午：整理戰利品，藥妝店與伴手禮最後補貨</li>
-        <li>下午：搭乘名鐵前往中部國際機場（可逛 Flight of Dreams）</li>
-        <li>搭機返回台灣，結束美好旅程</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 分頁 2：住宿一覽表 -->
-  <div id="hotels" class="tab-content">
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">🏨 全程 7 晚住宿規劃總表</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>日期</th>
-            <th>晚數</th>
-            <th>飯店名稱</th>
-            <th>規劃亮點</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>04/22 (四)</td>
-            <td>1 晚</td>
-            <td><strong>APA Hotel〈名古屋站前〉</strong></td>
-            <td>晚班機抵達，近車站且附設大浴場</td>
-          </tr>
-          <tr>
-            <td>04/23 (五)</td>
-            <td>1 晚</td>
-            <td><a href="https://maps.app.goo.gl/JAsT4Ev3vxNj9X7q8" target="_blank"><strong>露櫻GRAND酒店 名古屋藤丘站前</strong></a></td>
-            <td>位於 Linimo 轉乘站旁，隔天直衝吉卜力公園最省時</td>
-          </tr>
-          <tr>
-            <td>04/24 (六)</td>
-            <td>1 晚</td>
-            <td><strong>APA Hotel〈名古屋站前〉</strong></td>
-            <td>吉卜力玩完回市區，方便隔天跟 KKday 集合</td>
-          </tr>
-          <tr>
-            <td>04/25 – 04/26</td>
-            <td>2 晚</td>
-            <td><strong>KKday 山岳團指定飯店</strong></td>
-            <td>山區溫泉與阿爾卑斯路線周邊住宿</td>
-          </tr>
-          <tr>
-            <td>04/27 – 04/28</td>
-            <td>2 晚</td>
-            <td><strong>Dormy Inn 名古屋</strong></td>
-            <td>下山後好好放鬆，享受溫泉大浴場與免費宵夜拉麵</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 分頁 3：行前準備清單 -->
-  <div id="checklist" class="tab-content">
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">📋 訂票與預約進度（可點擊打勾）</span>
-      </div>
-      <div class="checklist-item"><input type="checkbox" id="c1"><label for="c1">四人來回機票（名古屋中部國際機場 NGO）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c2"><label for="c2">KKday 黑部立山・上高地 3 日遊（4/25 - 4/27）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c3"><label for="c3">4/22、4/24 APA Hotel〈名古屋站前〉（共 2 晚）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c4"><label for="c4">4/23 露櫻GRAND酒店 名古屋藤丘站前（1 晚）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c5"><label for="c5">4/27–28 Dormy Inn 名古屋（共 2 晚）</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c6"><label for="c6">2027/02/10 搶購 4/24 (六) 吉卜力公園「大散步券高級版」</label></div>
-      <div class="checklist-item"><input type="checkbox" id="c7"><label for="c7">日本網卡 / eSIM 與 Visit Japan Web 填寫</label></div>
-    </div>
-  </div>
-
-  <!-- 分頁 4：預估花費 -->
-  <div id="budget" class="tab-content">
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-title">💰 每人核心固定支出預估（台幣參考）</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>預估費用（每人）</th>
-            <th>備註</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>KKday 山岳 3 日遊</strong></td>
-            <td>約 NT$ 18,964</td>
-            <td>含 4/25–4/27 交通、山區住宿與部分餐食</td>
-          </tr>
-          <tr>
-            <td><strong>來回機票</strong></td>
-            <td>約 NT$ 12,000 – 16,000</td>
-            <td>視傳統航空或廉航促銷而定</td>
-          </tr>
-          <tr>
-            <td><strong>市區 5 晚住宿</strong></td>
-            <td>約 NT$ 11,000 – 16,000</td>
-            <td>包含 APA 2晚、藤之丘 1晚、Dormy Inn 2晚分攤</td>
-          </tr>
-          <tr>
-            <td><strong>吉卜力公園門票</strong></td>
-            <td>約 NT$ 1,750</td>
-            <td>大散步券高級版（假日 ¥7,800）</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  function switchTab(tabId, btn) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-    const saved = localStorage.getItem(box.id);
-    if (saved === 'true') box.checked = true;
-    box.addEventListener('change', () => {
-      localStorage.setItem(box.id, box.checked);
+  <script>
+    const checkboxes = document.querySelectorAll('#todoList input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+      const saved = localStorage.getItem('nagoya_2027_full_' + cb.id);
+      if (saved === 'true') {
+        cb.checked = true;
+        cb.parentElement.classList.add('checked');
+      }
+      cb.addEventListener('change', () => {
+        localStorage.setItem('nagoya_2027_full_' + cb.id, cb.checked);
+        cb.parentElement.classList.toggle('checked', cb.checked);
+      });
+      cb.parentElement.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'INPUT') {
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change'));
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
